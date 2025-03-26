@@ -1,19 +1,28 @@
 type Event {
-  id: ID!
-  userId: Int!
-  createdAt: String!
-  payLoad: AWSJSON!
+	id: ID!
+	userId: Int!
+	createdAt: AWSDateTime!
+	payLoad: PayLoad!
 }
 
-type Query {
-  getEvent(id: ID!): Event
+type Meta {
+	key1: Int!
+	key2: String!
+}
+
+type PayLoad {
+	meta: Meta!
 }
 
 type Mutation {
-  createEvent(userId: Int!, payLoad: AWSJSON!): Event
+	createEvent(userId: Int!, payLoad: AWSJSON!): Event!
+}
+
+type Query {
+	getEvent(id: ID!): Event
 }
 
 schema {
-  query: Query
-  mutation: Mutation
+	query: Query
+	mutation: Mutation
 }

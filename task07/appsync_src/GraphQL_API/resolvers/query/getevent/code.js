@@ -4,12 +4,12 @@
  * @returns {*} the request
  */
 export function request(ctx) {
-    // Construct the DynamoDB GetItem request
+    console.log("Request CTX - Get Event");
+    console.log(JSON.stringify(ctx, null, 2));
+    // Update with custom logic or select a code sample.
     return {
         operation: 'GetItem',
-        key: {
-            id: ctx.args.id,
-        },
+        key: util.dynamodb.toMapValues({ id: ctx.args.id }),
     };
 }
 
@@ -19,17 +19,8 @@ export function request(ctx) {
  * @returns {*} the result
  */
 export function response(ctx) {
-    const item = ctx.result;
-
-    if (!item) {
-        throw new Error('Event not found');
-    }
-
-    // Parse the DynamoDB response and return the event
-    return {
-        id: item.id,
-        userId: item.userId,
-        createdAt: item.createdAt,
-        payLoad: item.payLoad,
-    };
+    // Update with response logic
+    console.log("Response CTX - Get Event");
+    console.log(JSON.stringify(ctx, null, 2));
+    return ctx.result;
 }
